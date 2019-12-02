@@ -1,34 +1,36 @@
-package game_entities.jogador;
 
+package main.app.game_entities.jogador;
+
+import java.util.ArrayList;
 import java.util.List;
 
-public class JogadoresCollection 
+public class JogadoresCollection implements IColeção<Jogador>
 {
-	List <Jogador> jogadores;
+	private List<Jogador> jogadores;
+	
+	public JogadoresCollection()
+	{
+		jogadores = new ArrayList<Jogador>();
+	}
+	
+	public void add(Jogador jogador)
+	{
+		this.jogadores.add(jogador);
+	}
+	
+	public void remove(Jogador jogador)
+	{
+		this.jogadores.remove(jogador);
+	}
+	
+	public void remove(int i)
+	{
+		this.jogadores.remove(i);
+	}
 
-	public JogadoresCollection(List<Jogador> jogadores) 
+	@Override
+	public IteradorJogador createIterator()
 	{
-		super();
-		this.jogadores = jogadores;
-	}
-	
-	public void add(Jogador jogadores)
-	{
-		
-	}
-	
-	public void remover(Jogador jogadores)
-	{
-		
-	}
-	
-	public void remover(int i)
-	{
-		
-	}
-	
-	public IteradorJogador getIterator()
-	{
-		return null;
+		return new IteradorJogador(jogadores);
 	}
 }

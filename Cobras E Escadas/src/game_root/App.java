@@ -1,4 +1,4 @@
-package main.app.game_map;
+package game_root;
 
 public class App {
     public static void main(String[] args) throws Exception {

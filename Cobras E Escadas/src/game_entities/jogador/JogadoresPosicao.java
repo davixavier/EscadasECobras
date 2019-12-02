@@ -11,8 +11,7 @@ public class JogadoresPosicao
 	
 	public ICasa getCasaAtual(Jogador jogador)
 	{
-		
-		return null;
+		return posicoes.get(jogador);
 	}
 	
 	public ICasa setCasaAtual(Jogador jogador, ICasa casa) 

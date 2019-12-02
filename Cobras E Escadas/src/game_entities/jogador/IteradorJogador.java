@@ -1,4 +1,4 @@
-package main.app.game_entities.jogador;
+package game_entities.jogador;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,7 +13,7 @@ public class IteradorJogador implements IIterador<Jogador>
 		contador = 0;
 		this.jogadoresCopia = new ArrayList<Jogador>(jogadores.size());
 		
-		//copiar tudo da lista original para uma copia para não afetar a ordem da lista original
+		//copiar tudo da lista original para uma copia para nï¿½o afetar a ordem da lista original
 		jogadores.forEach(j ->
 		{
 			jogadoresCopia.add(j);
@@ -26,7 +26,7 @@ public class IteradorJogador implements IIterador<Jogador>
 		Jogador jogador = jogadoresCopia.get(contador);
 		contador++;
 		
-		//se o contador chegar no último reiniciar
+		//se o contador chegar no ï¿½ltimo reiniciar
 		if (!hasNext())
 		{
 			contador = 0;

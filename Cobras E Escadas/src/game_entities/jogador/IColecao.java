@@ -1,7 +1,7 @@
-package main.app.game_entities.jogador;
+package game_entities.jogador;
 
-//coleção genérica
-public interface IColeção<T>
+//colecao generica
+public interface IColecao<T>
 {
 	public void add(T t);
 	public void remove(T t);

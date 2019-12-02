@@ -1,6 +1,6 @@
-package main.app.game_entities.jogador;
+package game_entities.jogador;
 
-//T genérico
+//T generico
 public interface IIterador<T>
 {
 	public T next();

@@ -1,10 +1,10 @@
 
-package main.app.game_entities.jogador;
+package game_entities.jogador;
 
 import java.util.ArrayList;
 import java.util.List;
 
-public class JogadoresCollection implements IColeção<Jogador>
+public class JogadoresCollection implements IColecao<Jogador>
 {
 	private List<Jogador> jogadores;
 	

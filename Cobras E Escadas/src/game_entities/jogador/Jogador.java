@@ -1,4 +1,4 @@
-package main.app.game_entities.jogador;
+package game_entities.jogador;
 
 public class Jogador 
 {

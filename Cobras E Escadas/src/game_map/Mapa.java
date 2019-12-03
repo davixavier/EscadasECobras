@@ -75,4 +75,9 @@ public class Mapa
 		
 		return indiceCasaAtual;
 	}
+	
+	public int casasSize()
+	{
+		return casas.size();
+	}
 }

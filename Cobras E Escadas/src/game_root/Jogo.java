@@ -1,15 +1,22 @@
 package game_root;
 
 import game_entities.jogador.JogadoresCollection;
-import game_entities.jogador.JogadoresPosicao;
-import game_map.ControladorMapa;
 
 public class Jogo 
 {
 	private JogadoresCollection jogadores;
-	private ControladorMapa controladorMapa;
+	private Movimentacao movimentacao;
 	private ControladorTurno turno;
-	private JogadoresPosicao posicoes;
+	
+	public Jogo()
+	{
+		jogadores = new JogadoresCollection();
+		//TODO inicializar jogadores
+		
+		movimentacao = new Movimentacao(null, null); //TODO passar mapa e dado
+		
+		turno = new ControladorTurno(jogadores.createIterator());
+	}
 	
 	public void iniciarJogo() 
 	{

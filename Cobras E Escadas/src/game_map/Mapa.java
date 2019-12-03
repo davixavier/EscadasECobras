@@ -2,6 +2,7 @@ package game_map;
 
 import java.util.List;
 
+import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresPosicao;
 
 public class Mapa 
@@ -26,22 +27,32 @@ public class Mapa
 		return casas.get(indice);
 	}
 	
+	public int getCasaIndice(CasaAbstrata casa)
+	{
+		return casas.indexOf(casa);
+	}
 
 	public JogadoresPosicao getJogadoresPosicao()
 	{
 		return jogadoresPosicao;
 	}
 	
-
-	public List<CasaAbstrata> getCasas() {
-		return casas;
-	}
-
-	
-	public Movimentacao createIterator()
+	public void moverJogador(Jogador jogador, int offset)
 	{
+		CasaAbstrata casaAtual = getJogadoresPosicao().getCasaAtual(jogador);
+		int indiceCasaAtual = getCasaIndice(casaAtual);
 		
-		return null;
+		indiceCasaAtual += offset;
+		if (indiceCasaAtual < 0)
+		{
+			indiceCasaAtual = 0;
+		}
+		else if(indiceCasaAtual > 100)
+		{
+			indiceCasaAtual = 100;
+		}
+		
+		CasaAbstrata proximaCasa = getCasa(indiceCasaAtual);
+		getJogadoresPosicao().setCasaAtual(jogador, proximaCasa);
 	}
-
 }

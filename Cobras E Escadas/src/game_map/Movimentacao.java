@@ -15,20 +15,6 @@ public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 	
 	public void moverJogador(Jogador jogador)
 	{
-		CasaAbstrata casaAtual = mapa.getJogadoresPosicao().getCasaAtual(jogador);
-		int indiceCasaAtual = mapa.getCasaIndice(casaAtual);
-		
-		indiceCasaAtual += sorteavel.sortear();
-		if (indiceCasaAtual < 0)
-		{
-			indiceCasaAtual = 0;
-		}
-		else if(indiceCasaAtual > 100)
-		{
-			indiceCasaAtual = 100;
-		}
-		
-		CasaAbstrata proximaCasa = mapa.getCasa(indiceCasaAtual);
-		mapa.getJogadoresPosicao().setCasaAtual(jogador, proximaCasa);
+		mapa.moverJogador(jogador, sorteavel.sortear());
 	}
 }

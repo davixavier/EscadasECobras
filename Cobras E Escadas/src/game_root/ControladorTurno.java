@@ -1,6 +1,7 @@
 package game_root;
 
 import game_entities.jogador.IteradorJogador;
+import game_entities.jogador.Jogador;
 
 public class ControladorTurno 
 {
@@ -12,8 +13,8 @@ public class ControladorTurno
 		this.iteradorJogadores = iteradorJogadores;
 	}
 	
-	public int passarTurno()
+	public Jogador passarTurno()
 	{
-		return 0;
+		return iteradorJogadores.next();
 	}
 }

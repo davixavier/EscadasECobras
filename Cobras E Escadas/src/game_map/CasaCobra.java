@@ -10,7 +10,6 @@ public class CasaCobra extends CasaEspecialAbstrata
 		this.cauda = cau;
 	}
 
-	
 	public int getDestino()
 	{
 		return this.cauda;

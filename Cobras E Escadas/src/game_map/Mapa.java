@@ -37,7 +37,7 @@ public class Mapa
 		return jogadoresPosicao;
 	}
 	
-	public void moverJogador(Jogador jogador, int offset)
+	public int moverJogador(Jogador jogador, int offset)
 	{
 		CasaAbstrata casaAtual = getJogadoresPosicao().getCasaAtual(jogador);
 		int indiceCasaAtual = getCasaIndice(casaAtual);
@@ -54,5 +54,7 @@ public class Mapa
 		
 		CasaAbstrata proximaCasa = getCasa(indiceCasaAtual);
 		getJogadoresPosicao().setCasaAtual(jogador, proximaCasa);
+		
+		return indiceCasaAtual;
 	}
 }

@@ -13,8 +13,8 @@ public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 		this.mapa = mapa;
 	}
 	
-	public void moverJogador(Jogador jogador)
+	public int moverJogador(Jogador jogador)
 	{
-		mapa.moverJogador(jogador, sorteavel.sortear());
+		return mapa.moverJogador(jogador, sorteavel.sortear());
 	}
 }

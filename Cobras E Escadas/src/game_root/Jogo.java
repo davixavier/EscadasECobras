@@ -1,6 +1,7 @@
 package game_root;
 
 import game_entities.jogador.JogadoresCollection;
+import game_map.Movimentacao;
 
 public class Jogo 
 {
@@ -25,7 +26,9 @@ public class Jogo
 	
 	public boolean jogarTurno()
 	{
-		return true;
+		int posicao = movimentacao.moverJogador(turno.passarTurno());
+		
+		return posicao >= 100;
 	}
 }
 

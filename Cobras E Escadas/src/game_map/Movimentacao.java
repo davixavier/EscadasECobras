@@ -5,16 +5,15 @@ import game_logic.sorteaveis.Sorteavel;
 
 public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 {
-	private Mapa mapa;
 	private Sorteavel sorteavel;
 	
-	public Movimentacao(Mapa mapa, Sorteavel sorteavel) 
+	public Movimentacao(Sorteavel sorteavel) 
 	{
-		this.mapa = mapa;
+		this.sorteavel = sorteavel;
 	}
 	
-	public int moverJogador(Jogador jogador)
+	public int moverJogador(Jogador jogador, Mapa map)
 	{
-		return mapa.moverJogador(jogador, sorteavel.sortear());
+		return map.moverJogador(jogador, sorteavel.sortear());
 	}
 }

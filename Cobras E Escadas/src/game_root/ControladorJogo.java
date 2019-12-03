@@ -2,15 +2,33 @@ package game_root;
 
 public class ControladorJogo 
 {
+	
 	private Jogo jogo;
+	private DiretorJogo diretor;
+	ControladorJogo()
+	{
+		this.diretor = new DiretorJogo(new BuilderJogoConcreto());
+	}
+
+	public void comecar(int quantidadeJogadores)
+	{
+		this.jogo = diretor.construir(quantidadeJogadores);
+	}
 
 	public void iniciarJogoAcao()
 	{
-		jogo.iniciarJogo();
+		
 	}
 	
-	public void rodarDadosAcao()
+	public boolean rodarDadosAcao()
 	{
-		jogo.jogarTurno();
+		
+		return true;
+	}
+	
+	public String finalizarJogo()
+	{
+		
+		return "";
 	}
 }

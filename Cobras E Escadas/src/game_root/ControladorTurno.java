@@ -4,7 +4,7 @@ import game_entities.jogador.IteradorJogador;
 
 public class ControladorTurno 
 {
-	IteradorJogador iteradorJogadores;
+	private IteradorJogador iteradorJogadores;
 
 	public ControladorTurno(IteradorJogador iteradorJogadores) 
 	{

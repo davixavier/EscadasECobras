@@ -1,5 +1,6 @@
 package game_map;
 
-public class ControladorMapa {
+public class ControladorMapa 
+{
 
 }

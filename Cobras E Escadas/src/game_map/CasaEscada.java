@@ -2,7 +2,7 @@ package game_map;
 
 public class CasaEscada extends CasaEspecialAbstrata
 {
-	int ultimoDegrau;
+	private int ultimoDegrau;
 	
 	CasaEscada(int pos, int ultimo) 
 	{

@@ -2,9 +2,9 @@ package game_map;
 
 public class CasaBonus extends CasaEspecialAbstrata
 {
-	int destino;
+	private int destino;
 	
-	CasaBonus(int pos, int des)
+	public CasaBonus(int pos, int des)
 	{
 		super(pos);
 		this.destino = des;

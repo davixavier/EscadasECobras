@@ -2,9 +2,9 @@ package game_map;
 
 public class CasaCobra extends CasaEspecialAbstrata
 {
-	int cauda;
+	private int cauda;
 
-	CasaCobra(int pos, int cau) 
+	public CasaCobra(int pos, int cau) 
 	{
 		super(pos);
 		this.cauda = cau;

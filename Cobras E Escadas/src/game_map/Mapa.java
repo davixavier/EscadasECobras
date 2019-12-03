@@ -11,10 +11,6 @@ public class Mapa
 
 	// add, get e remove das casas
 
-	public List<CasaAbstrata> getCasas(){
-		return this.casas;
-	}
-
 	public void addCasa(CasaAbstrata novaCasa)
 	{
 		casas.add(novaCasa);
@@ -25,6 +21,10 @@ public class Mapa
 		casas.remove(novaCasa);
 	}
 	
+	public CasaAbstrata getCasa(int indice)
+	{
+		return casas.get(indice);
+	}
 	
 
 	public int getCasaIndice(CasaAbstrata casa) //REVIEW Quem vai usar esse metodo?

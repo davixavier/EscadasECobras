@@ -2,7 +2,7 @@ package game_map;
 
 public abstract class CasaEspecialAbstrata extends CasaAbstrata 
 {
-	CasaEspecialAbstrata(int pos) 
+	public CasaEspecialAbstrata(int pos) 
 	{
 		super(pos);
 	}

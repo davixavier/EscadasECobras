@@ -2,9 +2,9 @@ package game_map;
 
 public abstract class CasaAbstrata 
 {
-	int posicao;
+	private int posicao;
 	
-	CasaAbstrata(int pos)
+	public CasaAbstrata(int pos)
 	{
 		this.posicao = pos;
 	}

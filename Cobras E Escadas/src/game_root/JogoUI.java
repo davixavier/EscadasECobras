@@ -1,6 +1,7 @@
 package game_root;
 
 import javafx.application.Application;
+import javafx.application.Platform;
 import javafx.geometry.Pos;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
@@ -12,7 +13,7 @@ import javafx.stage.Stage;
 public class JogoUI extends Application
 {
 	private ControladorJogo controlador;
-
+	
 	@Override
 	public void start(Stage primaryStage) throws Exception
 	{
@@ -34,9 +35,11 @@ public class JogoUI extends Application
 		vbox.setAlignment(Pos.CENTER);
 		vbox.setSpacing(15);
 		
+		//Botoes do menu e suas acoes
 		Button iniciarButton = new Button("Iniciar Jogo");
 		iniciarButton.setOnAction(e -> controlador.iniciarJogoAcao());
 		Button sairButton = new Button("Sair");
+		sairButton.setOnAction(e -> Platform.exit());
 		
 		vbox.getChildren().add(iniciarButton);
 		vbox.getChildren().add(sairButton);
@@ -47,6 +50,12 @@ public class JogoUI extends Application
 		AnchorPane.setBottomAnchor(vbox, 0.0);
 		
 		return vbox;
+	}
+	
+	@Override
+	public void stop() throws Exception 
+	{
+		super.stop();
 	}
 	
 	public static void main(String[] args) 

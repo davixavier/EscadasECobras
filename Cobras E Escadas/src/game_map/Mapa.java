@@ -26,16 +26,22 @@ public class Mapa
 		return casas.get(indice);
 	}
 	
-	public JogadoresPosicao getJogadoresPosicao() {
+
+	public JogadoresPosicao getJogadoresPosicao()
+	{
 		return jogadoresPosicao;
 	}
+	
 
 	public List<CasaAbstrata> getCasas() {
 		return casas;
 	}
 
-	public int getCasaIndice(CasaAbstrata casa){
-		return casa.getPosicao();
+	
+	public Movimentacao createIterator()
+	{
+		
+		return null;
 	}
 
 }

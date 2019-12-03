@@ -6,18 +6,11 @@ public class ControladorJogo
 
 	public void iniciarJogoAcao()
 	{
-		
+		jogo.iniciarJogo();
 	}
 	
-	public boolean rodarDadosAcao()
+	public void rodarDadosAcao()
 	{
-		
-		return true;
-	}
-	
-	public String finalizarJogo()
-	{
-		
-		return "";
+		jogo.jogarTurno();
 	}
 }

@@ -26,6 +26,11 @@ public class Mapa
 		return casas.get(indice);
 	}
 	
+	public JogadoresPosicao getJogadoresPosicao()
+	{
+		return jogadoresPosicao;
+	}
+	
 
 	public int getCasaIndice(CasaAbstrata casa) //REVIEW Quem vai usar esse metodo?
 	{
@@ -33,7 +38,7 @@ public class Mapa
 		return 0;
 	}
 	
-	public IteradorMapa createIterator()
+	public Movimentacao createIterator()
 	{
 		
 		return null;

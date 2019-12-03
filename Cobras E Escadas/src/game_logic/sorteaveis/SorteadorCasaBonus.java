@@ -5,6 +5,11 @@ public class SorteadorCasaBonus implements Sorteavel
 	@Override
 	public int sortear()
 	{
-		return (int)Math.random() * 6 - 3;
+		int rand = (int)Math.random() * 6 - 3;
+		
+		if (rand == 0)
+			rand = -3;
+		
+		return rand;
 	}
 }

@@ -26,16 +26,16 @@ public class Mapa
 		return casas.get(indice);
 	}
 	
+	public JogadoresPosicao getJogadoresPosicao() {
+		return jogadoresPosicao;
+	}
 
-	public int getCasaIndice(CasaAbstrata casa) //REVIEW Quem vai usar esse metodo?
-	{
-		
-		return 0;
+	public List<CasaAbstrata> getCasas() {
+		return casas;
 	}
-	
-	public IteradorMapa createIterator()
-	{
-		
-		return null;
+
+	public int getCasaIndice(CasaAbstrata casa){
+		return casa.getPosicao();
 	}
+
 }

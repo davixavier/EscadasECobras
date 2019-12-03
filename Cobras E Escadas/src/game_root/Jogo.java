@@ -44,5 +44,11 @@ public class Jogo
 		
 		return posicao >= 100;
 	}
+	
+	public String finalizarJogo()
+	{
+		
+		return "";
+	}
 }
 

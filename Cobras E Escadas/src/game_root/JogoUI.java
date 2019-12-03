@@ -1,19 +1,56 @@
 package game_root;
 
-import java.util.Scanner;
+import javafx.application.Application;
+import javafx.geometry.Pos;
+import javafx.scene.Scene;
+import javafx.scene.control.Button;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.Pane;
+import javafx.scene.layout.VBox;
+import javafx.stage.Stage;
 
-public class JogoUI {
-    public static void main(String[] args) {
-        ControladorJogo con = new ControladorJogo();
-        Scanner scan = new Scanner(System.in);
-        String op = scan.nextLine();
+public class JogoUI extends Application
+{
+	private ControladorJogo controlador;
 
-        if(op == "comecar"){
-            int quantidadeJogadores = 2;
-            con.comecar(quantidadeJogadores);
-        }else if(op == "jogarTurno"){
-            
-        }
-        scan.close();
-    }
+	@Override
+	public void start(Stage primaryStage) throws Exception
+	{
+		controlador = new ControladorJogo();
+		
+		AnchorPane root = new AnchorPane();
+		root.getChildren().add(setUpMenu());
+		
+		Scene scene = new Scene(root, 640, 480);
+		
+		primaryStage.setScene(scene);
+		primaryStage.setTitle("Cobras e Escadas");
+		primaryStage.show();
+	}
+	
+	private Pane setUpMenu()
+	{
+		VBox vbox = new VBox();
+		vbox.setAlignment(Pos.CENTER);
+		vbox.setSpacing(15);
+		
+		Button iniciarButton = new Button("Iniciar Jogo");
+		iniciarButton.setOnAction(e -> controlador.iniciarJogoAcao());
+		Button sairButton = new Button("Sair");
+		
+		vbox.getChildren().add(iniciarButton);
+		vbox.getChildren().add(sairButton);
+		
+		AnchorPane.setTopAnchor(vbox, 0.0);
+		AnchorPane.setRightAnchor(vbox, 0.0);
+		AnchorPane.setLeftAnchor(vbox, 0.0);
+		AnchorPane.setBottomAnchor(vbox, 0.0);
+		
+		return vbox;
+	}
+	
+	public static void main(String[] args) 
+	{
+		launch(args);
+	}
 }

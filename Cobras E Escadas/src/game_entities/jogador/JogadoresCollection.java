@@ -8,9 +8,18 @@ public class JogadoresCollection implements IColecao<Jogador>
 {
 	private List<Jogador> jogadores;
 	
-	public JogadoresCollection()
+	public JogadoresCollection(int quantidadeJogadores)
 	{
 		jogadores = new ArrayList<Jogador>();
+		for (int i = 0; i < quantidadeJogadores; i++)
+		{
+			Jogador novoJogador = new Jogador("ff" + i*500);//TODO modificar logica de cores
+			jogadores.add(novoJogador);
+		}
+	}
+
+	public Jogador getJogador(int i) {
+		return jogadores.get(i);
 	}
 	
 	public void add(Jogador jogador)

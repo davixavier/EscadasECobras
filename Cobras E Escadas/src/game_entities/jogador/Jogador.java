@@ -5,9 +5,9 @@ public class Jogador
 	//cor em hex
 	private String cor;
 	
-	public Jogador() 
+	public Jogador(String cor) 
 	{
-		cor = "fff";
+		this.cor = cor;
 	}
 
 	public String getCor() 

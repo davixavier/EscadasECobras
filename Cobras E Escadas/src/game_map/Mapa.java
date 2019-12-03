@@ -1,5 +1,6 @@
 package game_map;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import game_entities.jogador.Jogador;
@@ -10,7 +11,24 @@ public class Mapa
 	private List <CasaAbstrata> casas;
 	private JogadoresPosicao jogadoresPosicao;
 
-	// add, get e remove das casas
+
+	public Mapa()
+	{
+		this.casas = new ArrayList<CasaAbstrata>();
+		this.jogadoresPosicao = new JogadoresPosicao();
+
+		for (int i = 1; i < 101; i++) {
+			if(i == 10){
+				casas.add(new CasaEscada(i, i+50));
+			}else if(i == 66){
+				casas.add(new CasaCobra(i, i-65));
+			}else if(i == 30){
+				casas.add(new CasaBonus(i));
+			}else{
+				casas.add(new Casa(i));
+			}
+        }
+	}
 
 	public void addCasa(CasaAbstrata novaCasa)
 	{

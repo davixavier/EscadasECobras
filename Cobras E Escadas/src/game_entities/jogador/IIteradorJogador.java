@@ -1,10 +1,10 @@
 package game_entities.jogador;
 
 //T generico
-public interface IIterador<T>
+public interface IIteradorJogador
 {
-	public T next();
+	public Jogador next();
 	public boolean hasNext();
-	public T get();
+	public Jogador get();
 	public int nextIndex();
 }

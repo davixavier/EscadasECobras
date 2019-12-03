@@ -1,5 +1,7 @@
 package game_root;
 
+import game_entities.jogador.JogadoresPosicao;
+import game_map.IIteradorMapa;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Pos;
@@ -10,7 +12,7 @@ import javafx.scene.layout.Pane;
 import javafx.scene.layout.VBox;
 import javafx.stage.Stage;
 
-public class JogoUI extends Application
+public class JogoUI extends Application implements IJogoObservador
 {
 	private ControladorJogo controlador;
 	
@@ -57,9 +59,22 @@ public class JogoUI extends Application
 	{
 		super.stop();
 	}
-	
-	public static void main(String[] args) 
+
+	@Override
+	public void posicoesMudadas(JogadoresPosicao posicoes) 
 	{
-		launch(args);
+		
+	}
+
+	@Override
+	public void mapaMudado(IIteradorMapa iIteradorMapa) 
+	{
+		
+	}
+
+	@Override
+	public void novoTurno(String jogadoratual) 
+	{
+		
 	}
 }

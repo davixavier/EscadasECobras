@@ -4,7 +4,7 @@ public class CasaEscada extends CasaEspecialAbstrata
 {
 	private int ultimoDegrau;
 	
-	CasaEscada(int pos, int ultimo) 
+	public CasaEscada(int pos, int ultimo) 
 	{
 		super(pos);
 		this.ultimoDegrau = ultimo;

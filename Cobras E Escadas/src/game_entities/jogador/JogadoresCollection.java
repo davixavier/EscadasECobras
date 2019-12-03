@@ -4,7 +4,7 @@ package game_entities.jogador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class JogadoresCollection implements IColecao<Jogador>
+public class JogadoresCollection implements IColecaoJogador
 {
 	private List<Jogador> jogadores;
 	

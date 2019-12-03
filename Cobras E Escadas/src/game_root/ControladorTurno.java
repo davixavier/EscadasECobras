@@ -17,4 +17,11 @@ public class ControladorTurno
 	{
 		return iteradorJogadores.next();
 	}
+	
+	public String turnoAtual()
+	{
+		String turno = "Jogador " + iteradorJogadores.nextIndex();
+		
+		return turno;
+	}
 }

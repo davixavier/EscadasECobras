@@ -6,11 +6,10 @@ import java.util.List;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresPosicao;
 
-public class Mapa 
+public class Mapa implements IMapaColeção
 {
 	private List <CasaAbstrata> casas;
 	private JogadoresPosicao jogadoresPosicao;
-
 
 	public Mapa()
 	{
@@ -79,5 +78,11 @@ public class Mapa
 	public int casasSize()
 	{
 		return casas.size();
+	}
+	
+	@Override
+	public IIteradorMapa createIterator()
+	{
+		return new IteradorMapa(casas);
 	}
 }

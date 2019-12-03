@@ -3,7 +3,7 @@ package game_entities.jogador;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IteradorJogador implements IIterador<Jogador>
+public class IteradorJogador implements IIteradorJogador
 {
 	private List<Jogador> jogadoresCopia;
 	private int contador;

@@ -2,10 +2,10 @@ package game_root;
 
 public class ControladorJogo 
 {
-	
 	private Jogo jogo;
 	private DiretorJogo diretor;
-	ControladorJogo()
+	
+	public ControladorJogo()
 	{
 		this.diretor = new DiretorJogo(new BuilderJogoConcreto());
 	}

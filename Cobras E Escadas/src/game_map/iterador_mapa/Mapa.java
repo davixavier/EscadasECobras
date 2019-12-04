@@ -59,16 +59,20 @@ public class Mapa implements IMapaColecao
 			proximaCasaIndex = 99;
 		} 
 		
+		int movimentoEspecial = 0;
+		
 		CasaAbstrata proximaCasa = getCasa(proximaCasaIndex);
 		if(proximaCasa instanceof CasaEspecialAbstrata)
 		{
 			CasaEspecialAbstrata proximaCasaEspecial = (CasaEspecialAbstrata)(proximaCasa);
+			movimentoEspecial = proximaCasaEspecial.getDestino() - proximaCasaIndex;
+			
 			proximaCasa = getCasa(proximaCasaEspecial.getDestino());
 			proximaCasaIndex = getCasaIndice(proximaCasa);
 		}
 		getJogadoresPosicao().setCasaAtual(jogador, proximaCasa);
 		
-		return proximaCasaIndex;
+		return movimentoEspecial;
 	}
 	
 	public int casasSize()

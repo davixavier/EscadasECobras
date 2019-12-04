@@ -1,28 +1,27 @@
 package game_root;
 
 import java.util.HashMap;
-import java.util.Iterator;
-import java.util.Map.Entry;
 
-import game_entities.jogador.IIteradorJogador;
-import game_entities.jogador.JogadoresPosicao;
 import game_map.casas.CasaAbstrata;
+import game_map.casas.CasaEspecialAbstrata;
 import game_map.iterador_mapa.IIteradorMapa;
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
-import javafx.geometry.Insets;
+import javafx.geometry.Bounds;
 import javafx.geometry.Pos;
+import javafx.scene.Node;
 import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.Label;
+import javafx.scene.control.ScrollPane;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.layout.GridPane;
 import javafx.scene.layout.Pane;
-import javafx.scene.layout.Priority;
 import javafx.scene.layout.StackPane;
 import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
+import javafx.scene.shape.Line;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
 import javafx.util.Duration;
@@ -37,6 +36,8 @@ public class JogoUI extends Application implements IJogoObservador
 	private GridPane mapaGrid;
 	private GridPane jogadoresGrid;
 	private Pane rootPane;
+	private Button avançarButton;
+	private Label resultadoLabel;
 	
 	private AnchorPane turnoPane;
 	
@@ -126,12 +127,21 @@ public class JogoUI extends Application implements IJogoObservador
 		rootPane.getChildren().add(mapaPane);
 		rootPane.getChildren().add(turnoPane);
 		
-		Button avançarButton = new Button("Rodar Dado");
+		//Botão de avançar turno
+		avançarButton = new Button("Rodar Dado");
 		avançarButton.setOnAction(event ->
 		{
 			controlador.jogarTurnoAcao();
 		});
 		turnoPane.getChildren().add(avançarButton);
+		AnchorPane.setTopAnchor(avançarButton, 10.0);
+		AnchorPane.setLeftAnchor(avançarButton, 10.0);
+		
+		resultadoLabel = new Label("Resultado: ");
+		resultadoLabel.setStyle("-fx-font-weight: bold");
+		turnoPane.getChildren().add(resultadoLabel);
+		AnchorPane.setBottomAnchor(resultadoLabel, 10.0);
+		AnchorPane.setLeftAnchor(resultadoLabel, 10.0);
 	}
 	
 	private void desenharCasas(IIteradorMapa iIteradorMapa, HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> jogadorPosicoes)
@@ -156,20 +166,84 @@ public class JogoUI extends Application implements IJogoObservador
 			}
 		}
 		
-		if (jogadorPosicoes != null)
+		iIteradorMapa.reset();
+		for (int i = 0; i < JogoUI.ROW_SIZE; i++) 
 		{
-			jogadorPosicoes.forEach((jogador, posicao) ->
+			for (int j = 0; j < JogoUI.COLUMN_SIZE; j++) 
 			{
-				PathTransition pathTransition = new PathTransition();
-				pathTransition.setDuration(Duration.seconds(3));
+				CasaAbstrata casa = iIteradorMapa.next();
 				
-			});
+				if (casa instanceof CasaEspecialAbstrata)
+				{
+					CasaEspecialAbstrata casaEspecial = (CasaEspecialAbstrata)casa;
+					
+					int pos = 10*i+j;
+					Platform.runLater(() ->
+					{
+						GridCellMapa cell = (GridCellMapa) mapaGrid.getChildren().get(pos);
+						Bounds cellBounds = cell.localToScene(cell.getBoundsInLocal());
+						
+						GridCellMapa cellDestino = (GridCellMapa) mapaGrid.getChildren().get(99-casaEspecial.getDestino());
+						Bounds cellDestinoBounds = cellDestino.localToScene(cellDestino.getBoundsInLocal());
+						
+						Line line = new Line(cellBounds.getMaxX()-cellBounds.getWidth()/2, 
+								cellBounds.getMaxY()-cellBounds.getHeight()/2, 
+								cellDestinoBounds.getMaxX()-cellDestinoBounds.getWidth()/2,
+								cellDestinoBounds.getMaxY()-cellDestinoBounds.getHeight()/2);
+						line.setStroke(Color.valueOf(casa.getCor() + "33"));
+						if (casaEspecial.getDestino() == 0)
+						{
+							line.setStroke(Color.TRANSPARENT);
+						}
+						
+						rootPane.getChildren().add(line);
+					});
+				}
+			}
 		}
 		
 		mapaGrid.setGridLinesVisible(false);
 		mapaGrid.setGridLinesVisible(true);
 		
 		lastPosicoes = jogadorPosicoes;
+	}
+	
+	private void moverJogadores(MovimentoEvent movimentoEvent, HashMap<Integer, Integer> jogadorPosicoes)
+	{
+		
+	}
+	
+	private void setTelaVencedor(String vencedor)
+	{
+		Label vencedorLabel = new Label(vencedor + " chegou na casa 100 e ganhou a partida!");
+		vencedorLabel.setAlignment(Pos.CENTER);
+		vencedorLabel.setTextFill(Color.valueOf("ffffff"));
+		vencedorLabel.setStyle("-fx-background-color: black");
+		
+		Rectangle shadeRectangle = new Rectangle(rootPane.getWidth(), rootPane.getHeight());
+		shadeRectangle.setFill(Color.valueOf("777777aa"));
+		
+		StackPane vencerPane = new StackPane(shadeRectangle, vencedorLabel);
+		vencerPane.setAlignment(Pos.CENTER);
+		
+		rootPane.getChildren().add(vencerPane);
+		rootPane.setDisable(true);
+	}
+	
+	private String construirResultadoText(MovimentoEvent event)
+	{
+		String ret = "Jogador " + event.getJogador() + " se movimenta " + event.getMovimentoDado() + " casas para a frente";
+		if (event.getMovimentoEspecial() != 0)
+		{
+			ret += ", cai numa casa especial e vai " + event.getMovimentoEspecial();
+			
+			if (event.getMovimentoEspecial() < 0)
+				ret += " para trás.";
+			else
+				ret += " para frente.";
+		}
+		
+		return ret;
 	}
 	
 	@Override
@@ -179,11 +253,26 @@ public class JogoUI extends Application implements IJogoObservador
 	}
 
 	@Override
-	public void posicoesMudadas(HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> jogadorPosicoes) 
+	public void posicoesMudadas(MovimentoEvent movimentoEvent, 
+			HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> jogadorPosicoes) 
 	{
 		if (lastIIteradorMapa == null)
 			return;
 		lastIIteradorMapa.reset();
+		
+		if (movimentoEvent != null)
+		{
+			resultadoLabel.setText("Resultado: " + construirResultadoText(movimentoEvent));
+		}
+		
+		//Checagem de vencedor
+		jogadorPosicoes.forEach((jogador, posicao) ->
+		{
+			if (posicao >= 99)
+			{
+				setTelaVencedor("J" + jogador);
+			}
+		});
 
 		desenharCasas(lastIIteradorMapa, jogadoresCores, jogadorPosicoes);
 	}
@@ -193,11 +282,5 @@ public class JogoUI extends Application implements IJogoObservador
 	{
 		lastIIteradorMapa = iIteradorMapa;
 		desenharCasas(iIteradorMapa, null, null);
-	}
-
-	@Override
-	public void novoTurno(String jogadoratual) 
-	{
-		
 	}
 }

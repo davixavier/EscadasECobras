@@ -12,9 +12,11 @@ import javafx.scene.layout.Priority;
 public class GridCellMapa extends AnchorPane
 {
 	private int casaIndex;
+	HashMap<Integer, Label> jogadoresLabel;
 	
 	public GridCellMapa(CasaAbstrata casa, int index) 
 	{
+		jogadoresLabel = new HashMap<Integer, Label>();
 		casaIndex = index;
 		
 		Label casaLabel = new Label("" + index);
@@ -67,7 +69,17 @@ public class GridCellMapa extends AnchorPane
 					AnchorPane.setBottomAnchor(jogadorLabel, 0.0);
 					AnchorPane.setRightAnchor(jogadorLabel, 0.0);
 				}
+				
+				jogadoresLabel.put(jogador, jogadorLabel);
 			});
 		}
+	}
+	
+	public Label getJogadorLabel(int jogador)
+	{
+		if (jogadoresLabel.containsKey(jogador))
+			return jogadoresLabel.get(jogador);
+		else
+			return null;
 	}
 }

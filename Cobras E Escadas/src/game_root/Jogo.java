@@ -41,12 +41,12 @@ public class Jogo implements IJogoObservavel
 		return jogadores;
 	}
 	
-	public boolean jogarTurno()
+	public void jogarTurno()
 	{
-		int posicao = movimentacao.moverJogador(turno.passarTurno(), mapa);
-		updatePosicoes();
+		MovimentoEvent movimentoEvent = movimentacao.moverJogador(turno.passarTurno(), mapa);
+		movimentoEvent.setJogador(turno.turnoAtual());
 		
-		return posicao >= 100;
+		updatePosicoes(movimentoEvent);
 	}
 
 	//M�todos da interface de observavel
@@ -72,7 +72,7 @@ public class Jogo implements IJogoObservavel
 	}
 
 	@Override
-	public void updatePosicoes()
+	public void updatePosicoes(MovimentoEvent movimentoEvent)
 	{
 		observadores.forEach(observador ->
 		{
@@ -94,17 +94,7 @@ public class Jogo implements IJogoObservavel
 				jogadorPosicoes.put(nextIndex, casaAtual);
 			}
 			
-			observador.posicoesMudadas(jogadoresCores, jogadorPosicoes);
-		});
-	}
-
-	@Override
-	public void updateTurno() 
-	{
-		observadores.forEach(observador ->
-		{
-			observador.novoTurno(turno.turnoAtual());
+			observador.posicoesMudadas(movimentoEvent, jogadoresCores, jogadorPosicoes);
 		});
 	}
 }
-

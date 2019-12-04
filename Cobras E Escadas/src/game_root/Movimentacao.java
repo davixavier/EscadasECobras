@@ -13,9 +13,14 @@ public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 		this.sorteavel = sorteavel;
 	}
 	
-	public int moverJogador(Jogador jogador, Mapa map)
+	public MovimentoEvent moverJogador(Jogador jogador, Mapa map)
 	{
 		int offset = sorteavel.sortear();
-		return map.moverJogador(jogador, offset);
+		
+		MovimentoEvent event = new MovimentoEvent();
+		event.setMovimentoDado(offset);
+		event.setMovimentoEspecial(map.moverJogador(jogador, offset));
+		
+		return event;
 	}
 }

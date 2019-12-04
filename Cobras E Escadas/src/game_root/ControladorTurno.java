@@ -18,9 +18,9 @@ public class ControladorTurno
 		return iteradorJogadores.next();
 	}
 	
-	public String turnoAtual()
+	public int turnoAtual()
 	{
-		String turno = "Jogador " + iteradorJogadores.nextIndex();
+		int turno = iteradorJogadores.nextIndex();
 		
 		return turno;
 	}

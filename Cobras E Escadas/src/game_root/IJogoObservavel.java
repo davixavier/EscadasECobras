@@ -6,6 +6,5 @@ public interface IJogoObservavel
 	public void remObservador(IJogoObservador o);
 	
 	public void updateMapa();
-	public void updatePosicoes();
-	public void updateTurno();
+	public void updatePosicoes(MovimentoEvent movimentoEvent);
 }

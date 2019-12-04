@@ -6,7 +6,7 @@ import java.util.List;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresPosicao;
 
-public class Mapa implements IMapaColeção
+public class Mapa implements IMapaColecao
 {
 	private List <CasaAbstrata> casas;
 	private JogadoresPosicao jogadoresPosicao;
@@ -77,6 +77,6 @@ public class Mapa implements IMapaColeção
 	@Override
 	public IIteradorMapa createIterator()
 	{
-		return new IteradorMapa(casas);
+		return new IteradorMapaReverso(casas);
 	}
 }

@@ -13,7 +13,11 @@ public class JogadoresCollection implements IColecaoJogador
 		jogadores = new ArrayList<Jogador>();
 		for (int i = 0; i < quantidadeJogadores; i++)
 		{
-			Jogador novoJogador = new Jogador("ff" + i*500);//TODO modificar logica de cores
+			int rand = (int)(Math.random() * 10000);
+			if (rand < 1000)
+				rand += 1000;
+			
+			Jogador novoJogador = new Jogador("#ff" + rand);//TODO modificar logica de cores
 			jogadores.add(novoJogador);
 		}
 	}

@@ -1,5 +1,9 @@
 package game_root;
 
+import java.util.List;
+
+import game_entities.jogador.Jogador;
+import game_entities.jogador.JogadoresCollection;
 import game_map.*;
 
 public class BuilderJogoConcreto implements IBuilderJogo{
@@ -12,7 +16,7 @@ public class BuilderJogoConcreto implements IBuilderJogo{
         this.jogo = new Jogo(quantidadeJogadores);
     }
 
-    public void construirMapa() 
+    public void construirMapa(int quantidadeJogadores) 
     { 
         Mapa mapa = new Mapa();
 
@@ -28,6 +32,12 @@ public class BuilderJogoConcreto implements IBuilderJogo{
 			}
         }
         jogo.setMapa(mapa);
+        
+        for (int i = 0; i < quantidadeJogadores; i++)
+		{
+        	JogadoresCollection jogadores = jogo.getJogadores();
+			mapa.getJogadoresPosicao().setCasaAtual(jogadores.getJogador(i), mapa.getCasa(0));
+		}
     }
     
 

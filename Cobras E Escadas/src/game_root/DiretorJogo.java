@@ -17,7 +17,7 @@ public class DiretorJogo
     public Jogo construir(int quantidadeJogadores)
     {
         builder.construirJogo(quantidadeJogadores);
-        builder.construirMapa();
+        builder.construirMapa(quantidadeJogadores);
         return builder.getJogo();
     }
 }

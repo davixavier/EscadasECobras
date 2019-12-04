@@ -7,10 +7,12 @@ public class IteradorJogador implements IIteradorJogador
 {
 	private List<Jogador> jogadoresCopia;
 	private int contador;
+	private int ciclos;
 	
 	public IteradorJogador(List<Jogador> jogadores)
 	{
 		contador = 0;
+		ciclos = 0;
 		this.jogadoresCopia = new ArrayList<Jogador>(jogadores.size());
 		
 		//copiar tudo da lista original para uma copia para n�o afetar a ordem da lista original
@@ -30,6 +32,7 @@ public class IteradorJogador implements IIteradorJogador
 		if (!hasNext())
 		{
 			contador = 0;
+			ciclos++;
 		}
 		
 		return jogador; 
@@ -53,4 +56,8 @@ public class IteradorJogador implements IIteradorJogador
 		return contador+1;
 	}
 	
+	public int ciclos()
+	{
+		return ciclos;
+	}
 }

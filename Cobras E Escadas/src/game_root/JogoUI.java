@@ -8,6 +8,7 @@ import game_entities.jogador.IIteradorJogador;
 import game_entities.jogador.JogadoresPosicao;
 import game_map.CasaAbstrata;
 import game_map.IIteradorMapa;
+import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.application.Platform;
 import javafx.geometry.Insets;
@@ -24,6 +25,7 @@ import javafx.scene.layout.VBox;
 import javafx.scene.paint.Color;
 import javafx.scene.shape.Rectangle;
 import javafx.stage.Stage;
+import javafx.util.Duration;
 
 public class JogoUI extends Application implements IJogoObservador
 {
@@ -36,7 +38,10 @@ public class JogoUI extends Application implements IJogoObservador
 	private GridPane jogadoresGrid;
 	private Pane rootPane;
 	
+	private AnchorPane turnoPane;
+	
 	private IIteradorMapa lastIIteradorMapa;
+	private HashMap<Integer, Integer> lastPosicoes;
 	
 	//mediator
 	private JogoUIMediator mediator;
@@ -71,6 +76,12 @@ public class JogoUI extends Application implements IJogoObservador
 		AnchorPane.setLeftAnchor(jogadoresGrid, 0.0);
 		AnchorPane.setBottomAnchor(jogadoresGrid, 0.0);
 		
+		turnoPane = new AnchorPane();
+		AnchorPane.setTopAnchor(turnoPane, 411.0);
+		AnchorPane.setRightAnchor(turnoPane, 0.0);
+		AnchorPane.setLeftAnchor(turnoPane, 0.0);
+		AnchorPane.setBottomAnchor(turnoPane, 0.0);
+		
 		rootPane = new AnchorPane();
 		rootPane.getChildren().add(setUpMenu());
 		
@@ -94,7 +105,6 @@ public class JogoUI extends Application implements IJogoObservador
 		{
 			setUpMapa();
 			controlador.iniciarJogoAcao(4, this);
-			controlador.jogarTurnoAcao();
 		});
 		Button sairButton = new Button("Sair");
 		sairButton.setOnAction(e -> Platform.exit());
@@ -114,10 +124,21 @@ public class JogoUI extends Application implements IJogoObservador
 	{
 		rootPane.getChildren().clear();
 		rootPane.getChildren().add(mapaPane);
+		rootPane.getChildren().add(turnoPane);
+		
+		Button avançarButton = new Button("Rodar Dado");
+		avançarButton.setOnAction(event ->
+		{
+			controlador.jogarTurnoAcao();
+		});
+		turnoPane.getChildren().add(avançarButton);
 	}
 	
 	private void desenharCasas(IIteradorMapa iIteradorMapa, HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> jogadorPosicoes)
 	{
+		if (lastPosicoes == null)
+			lastPosicoes = jogadorPosicoes;
+		
 		mapaGrid.getChildren().clear();
 		
 		for (int i = 0; i < JogoUI.ROW_SIZE; i++) 
@@ -128,12 +149,27 @@ public class JogoUI extends Application implements IJogoObservador
 				if (casa == null)
 					continue;
 				
-				mapaGrid.add(new GridCellMapa(casa, iIteradorMapa.index()+1, jogadoresCores, jogadorPosicoes), j, i);
+				GridCellMapa cell = new GridCellMapa(casa, iIteradorMapa.index()+1);
+				cell.addJogadores(jogadoresCores, jogadorPosicoes);
+				
+				mapaGrid.add(cell, j, i);
 			}
+		}
+		
+		if (jogadorPosicoes != null)
+		{
+			jogadorPosicoes.forEach((jogador, posicao) ->
+			{
+				PathTransition pathTransition = new PathTransition();
+				pathTransition.setDuration(Duration.seconds(3));
+				
+			});
 		}
 		
 		mapaGrid.setGridLinesVisible(false);
 		mapaGrid.setGridLinesVisible(true);
+		
+		lastPosicoes = jogadorPosicoes;
 	}
 	
 	@Override

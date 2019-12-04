@@ -11,8 +11,12 @@ import javafx.scene.layout.Priority;
 
 public class GridCellMapa extends AnchorPane
 {
-	public GridCellMapa(CasaAbstrata casa, int index, HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> posicaoJogador) 
+	private int casaIndex;
+	
+	public GridCellMapa(CasaAbstrata casa, int index) 
 	{
+		casaIndex = index;
+		
 		Label casaLabel = new Label("" + index);
 		casaLabel.setAlignment(Pos.CENTER);		
 		casaLabel.setStyle("-fx-background-color: " + casa.getCor() + ";");
@@ -22,11 +26,19 @@ public class GridCellMapa extends AnchorPane
 		AnchorPane.setRightAnchor(casaLabel, 0.0);
 		getChildren().add(casaLabel);
 		
+		GridPane.setHgrow(this, Priority.ALWAYS);
+		GridPane.setVgrow(this, Priority.ALWAYS);
+		setMaxWidth(Double.POSITIVE_INFINITY);
+		setMaxHeight(Double.POSITIVE_INFINITY);
+	}
+	
+	public void addJogadores(HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> posicaoJogador)
+	{
 		if (jogadoresCores != null && posicaoJogador != null)
 		{
 			posicaoJogador.forEach((jogador, posicao) ->
 			{
-				if (posicao+1 != index)
+				if (posicao+1 != casaIndex)
 					return;
 				
 				String cor = jogadoresCores.get(jogador);
@@ -57,10 +69,5 @@ public class GridCellMapa extends AnchorPane
 				}
 			});
 		}
-		
-		GridPane.setHgrow(this, Priority.ALWAYS);
-		GridPane.setVgrow(this, Priority.ALWAYS);
-		setMaxWidth(Double.POSITIVE_INFINITY);
-		setMaxHeight(Double.POSITIVE_INFINITY);
 	}
 }

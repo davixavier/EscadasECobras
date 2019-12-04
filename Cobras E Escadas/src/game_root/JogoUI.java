@@ -6,8 +6,8 @@ import java.util.Map.Entry;
 
 import game_entities.jogador.IIteradorJogador;
 import game_entities.jogador.JogadoresPosicao;
-import game_map.CasaAbstrata;
-import game_map.IIteradorMapa;
+import game_map.casas.CasaAbstrata;
+import game_map.iterador_mapa.IIteradorMapa;
 import javafx.animation.PathTransition;
 import javafx.application.Application;
 import javafx.application.Platform;

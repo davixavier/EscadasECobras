@@ -2,7 +2,7 @@ package game_root;
 
 import java.util.HashMap;
 
-import game_map.CasaAbstrata;
+import game_map.casas.CasaAbstrata;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;

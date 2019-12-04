@@ -26,16 +26,19 @@ public class JogadoresCollection implements IColecaoJogador
 		return jogadores.get(i);
 	}
 	
+	@Override
 	public void add(Jogador jogador)
 	{
 		this.jogadores.add(jogador);
 	}
 	
+	@Override
 	public void remove(Jogador jogador)
 	{
 		this.jogadores.remove(jogador);
 	}
 	
+	@Override
 	public void remove(int i)
 	{
 		this.jogadores.remove(i);

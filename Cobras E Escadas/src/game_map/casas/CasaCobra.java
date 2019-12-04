@@ -11,6 +11,7 @@ public class CasaCobra extends CasaEspecialAbstrata
 		cor = "#16632d";
 	}
 
+	@Override
 	public int getDestino()
 	{
 		return this.cauda;

@@ -56,6 +56,7 @@ public class IteradorJogador implements IIteradorJogador
 		return contador+1;
 	}
 	
+	@Override
 	public int ciclos()
 	{
 		return ciclos;

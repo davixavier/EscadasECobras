@@ -11,6 +11,7 @@ public class CasaEscada extends CasaEspecialAbstrata
 		cor = "#805f18";
 	}
 
+	@Override
 	public int getDestino()
 	{
 		return this.ultimoDegrau;

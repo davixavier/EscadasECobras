@@ -14,7 +14,7 @@ public class ControladorJogo
 	public void comecar(int quantidadeJogadores, JogoUI jogoUI)
 	{
 		this.jogo = diretor.construir(quantidadeJogadores);
-		this.jogo.addObservador((IJogoObservador)jogoUI);
+		this.jogo.addObservador(jogoUI);
 		
 		this.jogo.updateMapa();
 		this.jogo.updatePosicoes(null);

@@ -8,13 +8,15 @@ public class BuilderJogoConcreto implements IBuilderJogo{
 
     private Jogo jogo;
 
-    public void construirJogo(int quantidadeJogadores) 
+    @Override
+	public void construirJogo(int quantidadeJogadores) 
     { 
         
         this.jogo = new Jogo(quantidadeJogadores);
     }
 
-    public void construirMapa(int quantidadeJogadores) 
+    @Override
+	public void construirMapa(int quantidadeJogadores) 
     { 
         Mapa mapa = new Mapa();
 
@@ -39,7 +41,8 @@ public class BuilderJogoConcreto implements IBuilderJogo{
     }
     
 
-    public Jogo getJogo() {
+    @Override
+	public Jogo getJogo() {
         return jogo;
     }
 

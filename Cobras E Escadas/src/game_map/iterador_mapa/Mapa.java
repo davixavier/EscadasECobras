@@ -19,11 +19,13 @@ public class Mapa implements IMapaColecao
 		this.jogadoresPosicao = new JogadoresPosicao();
 	}
 
+	@Override
 	public void addCasa(CasaAbstrata novaCasa)
 	{
 		casas.add(novaCasa);
 	}
 
+	@Override
 	public void removeCasa(CasaAbstrata novaCasa)
 	{
 		casas.remove(novaCasa);

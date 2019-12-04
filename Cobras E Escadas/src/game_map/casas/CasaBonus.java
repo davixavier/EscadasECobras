@@ -9,6 +9,7 @@ public class CasaBonus extends CasaEspecialAbstrata
 		cor = "#bd5a1c";
 	}
 
+	@Override
 	public int getDestino() 
 	{
 		return (int) Math.random() * 3;

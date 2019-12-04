@@ -25,7 +25,7 @@ public class JogoUIMediator extends Application
 		super.stop();
 	}
 	
-	//Main da aplicação
+	//Main da aplicaï¿½ï¿½o
 	public static void main(String[] args) 
 	{
 		Application.launch(args);

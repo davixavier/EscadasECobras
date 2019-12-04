@@ -2,7 +2,7 @@ package game_entities.jogador;
 
 import java.util.HashMap;
 
-import game_map.CasaAbstrata;
+import game_map.casas.*;;
 
 public class JogadoresPosicao
 {

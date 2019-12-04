@@ -1,7 +1,8 @@
-package game_map;
+package game_root;
 
 import game_entities.jogador.Jogador;
 import game_logic.sorteaveis.Sorteavel;
+import game_map.iterador_mapa.Mapa;
 
 public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 {

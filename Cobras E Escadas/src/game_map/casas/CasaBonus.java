@@ -1,4 +1,4 @@
-package game_map;
+package game_map.casas;
 
 public class CasaBonus extends CasaEspecialAbstrata
 {

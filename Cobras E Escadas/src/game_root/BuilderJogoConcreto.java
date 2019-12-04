@@ -1,10 +1,8 @@
 package game_root;
 
-import java.util.List;
-
-import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresCollection;
-import game_map.*;
+import game_map.casas.*;
+import game_map.iterador_mapa.Mapa;
 
 public class BuilderJogoConcreto implements IBuilderJogo{
 

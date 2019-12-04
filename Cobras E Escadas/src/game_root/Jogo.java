@@ -5,12 +5,11 @@ import java.util.HashMap;
 import java.util.List;
 
 import game_entities.jogador.IIteradorJogador;
-import game_entities.jogador.IteradorJogador;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresCollection;
 import game_logic.sorteaveis.DadoD6;
-import game_map.Mapa;
-import game_map.Movimentacao;
+import game_map.iterador_mapa.*;
+import game_root.Movimentacao;
 
 public class Jogo implements IJogoObservavel
 {
@@ -87,14 +86,14 @@ public class Jogo implements IJogoObservavel
 			
 			IIteradorJogador iteradorJogador = jogadores.createIterator();
 			
-			//Dar só uma volta no iterador
+			//Dar sï¿½ uma volta no iterador
 			while(iteradorJogador.ciclos() == 0)
 			{
 				int nextIndex = iteradorJogador.nextIndex();
 				Jogador jogador = iteradorJogador.next();
 				jogadoresCores.put(nextIndex, jogador.getCor());
 				
-				//pega a posição do jogador em inteiro por meio do mapa
+				//pega a posiï¿½ï¿½o do jogador em inteiro por meio do mapa
 				int casaAtual = mapa.getCasaIndice(mapa.getJogadoresPosicao().getCasaAtual(jogador));
 				jogadorPosicoes.put(nextIndex, casaAtual);
 			}

@@ -1,10 +1,12 @@
-package game_map;
+package game_map.iterador_mapa;
 
 import java.util.ArrayList;
 import java.util.List;
 
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresPosicao;
+import game_map.casas.*;
+
 
 public class Mapa implements IMapaColecao
 {

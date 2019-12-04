@@ -1,7 +1,9 @@
-package game_map;
+package game_map.iterador_mapa;
 
 import java.util.ArrayList;
 import java.util.List;
+
+import game_map.casas.CasaAbstrata;
 
 public class IteradorMapaReverso implements IIteradorMapa
 {

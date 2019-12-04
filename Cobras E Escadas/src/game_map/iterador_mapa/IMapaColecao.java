@@ -1,4 +1,6 @@
-package game_map;
+package game_map.iterador_mapa;
+
+import game_map.casas.CasaAbstrata;
 
 public interface IMapaColecao
 {

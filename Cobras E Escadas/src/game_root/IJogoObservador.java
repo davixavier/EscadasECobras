@@ -2,8 +2,7 @@ package game_root;
 
 import java.util.HashMap;
 
-import game_entities.jogador.JogadoresPosicao;
-import game_map.IIteradorMapa;
+import game_map.iterador_mapa.*;
 
 public interface IJogoObservador
 {

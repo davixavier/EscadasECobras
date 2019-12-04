@@ -1,8 +1,12 @@
 package game_root;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
+import game_entities.jogador.IIteradorJogador;
+import game_entities.jogador.IteradorJogador;
+import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresCollection;
 import game_logic.sorteaveis.DadoD6;
 import game_map.Mapa;
@@ -25,7 +29,7 @@ public class Jogo implements IJogoObservavel
 		this.mapa = new Mapa();
 		
 		for (int i = 0; i < quantidadeJogadores; i++) {
-			mapa.getJogadoresPosicao().setCasaAtual(jogadores.getJogador(i), mapa.getCasa(1));
+			mapa.getJogadoresPosicao().setCasaAtual(jogadores.getJogador(i), mapa.getCasa(0));
 		}
 
 		movimentacao = new Movimentacao(new DadoD6()); //TODO passar mapa e dado
@@ -51,6 +55,7 @@ public class Jogo implements IJogoObservavel
 	public boolean jogarTurno()
 	{
 		int posicao = movimentacao.moverJogador(turno.passarTurno(), mapa);
+		updatePosicoes();
 		
 		return posicao >= 100;
 	}
@@ -88,7 +93,25 @@ public class Jogo implements IJogoObservavel
 	{
 		observadores.forEach(observador ->
 		{
-			observador.posicoesMudadas(mapa.getJogadoresPosicao());
+			//Estado
+			HashMap<Integer, String> jogadoresCores = new HashMap<>();
+			HashMap<Integer, Integer> jogadorPosicoes = new HashMap<>();
+			
+			IIteradorJogador iteradorJogador = jogadores.createIterator();
+			
+			//Dar só uma volta no iterador
+			while(iteradorJogador.ciclos() == 0)
+			{
+				int nextIndex = iteradorJogador.nextIndex();
+				Jogador jogador = iteradorJogador.next();
+				jogadoresCores.put(nextIndex, jogador.getCor());
+				
+				//pega a posição do jogador em inteiro por meio do mapa
+				int casaAtual = mapa.getCasaIndice(mapa.getJogadoresPosicao().getCasaAtual(jogador));
+				jogadorPosicoes.put(nextIndex, casaAtual);
+			}
+			
+			observador.posicoesMudadas(jogadoresCores, jogadorPosicoes);
 		});
 	}
 

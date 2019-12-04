@@ -7,4 +7,5 @@ public interface IIteradorJogador
 	public boolean hasNext();
 	public Jogador get();
 	public int nextIndex();
+	public int ciclos();
 }

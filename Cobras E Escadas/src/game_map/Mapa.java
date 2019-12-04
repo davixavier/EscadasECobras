@@ -83,6 +83,6 @@ public class Mapa implements IMapaColeção
 	@Override
 	public IIteradorMapa createIterator()
 	{
-		return new IteradorMapa(casas);
+		return new IteradorMapaReverso(casas);
 	}
 }

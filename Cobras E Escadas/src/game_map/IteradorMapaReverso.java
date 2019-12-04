@@ -3,12 +3,12 @@ package game_map;
 import java.util.ArrayList;
 import java.util.List;
 
-public class IteradorMapa implements IIteradorMapa
+public class IteradorMapaReverso implements IIteradorMapa
 {
 	private List<CasaAbstrata> casasCopia;
 	private int contador;
 	
-	public IteradorMapa(List<CasaAbstrata> casas) 
+	public IteradorMapaReverso(List<CasaAbstrata> casas) 
 	{
 		casasCopia = new ArrayList<CasaAbstrata>(casas.size());
 		
@@ -16,17 +16,17 @@ public class IteradorMapa implements IIteradorMapa
 		{
 			casasCopia.add(casa);
 		}
-		contador = 0;
+		contador = casasCopia.size();
 	}
 
 	@Override
 	public CasaAbstrata next() 
 	{
-		if (contador >= casasCopia.size())
+		contador--;
+		if (contador < 0)
 			return null;
 		
 		CasaAbstrata casa = casasCopia.get(contador);
-		contador++;
 		
 		return casa;
 	}
@@ -34,7 +34,18 @@ public class IteradorMapa implements IIteradorMapa
 	@Override
 	public boolean hasNext()
 	{
-		return (contador < casasCopia.size());
+		return (contador >= 0);
 	}
 
+	@Override
+	public int index() 
+	{
+		return contador;
+	}
+	
+	@Override
+	public void reset() 
+	{
+		contador = casasCopia.size();
+	}
 }

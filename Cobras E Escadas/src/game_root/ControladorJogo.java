@@ -21,10 +21,9 @@ public class ControladorJogo
 		comecar(quantidadeJogadores, jogoUI);
 	}
 	
-	public boolean rodarDadosAcao()
+	public void jogarTurnoAcao() 
 	{
-		
-		return true;
+		jogo.jogarTurno();
 	}
 	
 	public String finalizarJogo()

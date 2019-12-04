@@ -1,0 +1,66 @@
+package game_root;
+
+import java.util.HashMap;
+
+import game_map.CasaAbstrata;
+import javafx.geometry.Pos;
+import javafx.scene.control.Label;
+import javafx.scene.layout.AnchorPane;
+import javafx.scene.layout.GridPane;
+import javafx.scene.layout.Priority;
+
+public class GridCellMapa extends AnchorPane
+{
+	public GridCellMapa(CasaAbstrata casa, int index, HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> posicaoJogador) 
+	{
+		Label casaLabel = new Label("" + index);
+		casaLabel.setAlignment(Pos.CENTER);		
+		casaLabel.setStyle("-fx-background-color: " + casa.getCor() + ";");
+		AnchorPane.setTopAnchor(casaLabel, 0.0);
+		AnchorPane.setBottomAnchor(casaLabel, 0.0);
+		AnchorPane.setLeftAnchor(casaLabel, 0.0);
+		AnchorPane.setRightAnchor(casaLabel, 0.0);
+		getChildren().add(casaLabel);
+		
+		if (jogadoresCores != null && posicaoJogador != null)
+		{
+			posicaoJogador.forEach((jogador, posicao) ->
+			{
+				if (posicao+1 != index)
+					return;
+				
+				String cor = jogadoresCores.get(jogador);
+				
+				Label jogadorLabel = new Label("J" + jogador);
+				jogadorLabel.setStyle("-fx-background-color: " + cor + ";");
+				
+				getChildren().add(jogadorLabel);
+				if (jogador == 1)
+				{
+					AnchorPane.setTopAnchor(jogadorLabel, 0.0);
+					AnchorPane.setLeftAnchor(jogadorLabel, 0.0);
+				}
+				else if (jogador == 2)
+				{
+					AnchorPane.setTopAnchor(jogadorLabel, 0.0);
+					AnchorPane.setRightAnchor(jogadorLabel, 0.0);
+				}
+				else if (jogador == 3)
+				{
+					AnchorPane.setBottomAnchor(jogadorLabel, 0.0);
+					AnchorPane.setLeftAnchor(jogadorLabel, 0.0);
+				}
+				else 
+				{
+					AnchorPane.setBottomAnchor(jogadorLabel, 0.0);
+					AnchorPane.setRightAnchor(jogadorLabel, 0.0);
+				}
+			});
+		}
+		
+		GridPane.setHgrow(this, Priority.ALWAYS);
+		GridPane.setVgrow(this, Priority.ALWAYS);
+		setMaxWidth(Double.POSITIVE_INFINITY);
+		setMaxHeight(Double.POSITIVE_INFINITY);
+	}
+}

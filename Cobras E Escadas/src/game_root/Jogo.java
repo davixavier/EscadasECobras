@@ -34,14 +34,13 @@ public class Jogo implements IJogoObservavel
 		observadores = new ArrayList<IJogoObservador>();
 	}
 
+	protected void setMapa(Mapa map){
+		this.mapa = map;
+	}
+
 	public JogadoresCollection getJogadores() 
 	{
 		return jogadores;
-	}
-
-	public void iniciarJogo() 
-	{
-		
 	}
 	
 	public boolean jogarTurno()
@@ -50,14 +49,8 @@ public class Jogo implements IJogoObservavel
 		
 		return posicao >= 100;
 	}
-	
-	public String finalizarJogo()
-	{
-		
-		return "";
-	}
 
-	//Métodos da interface de observavel
+	//Mï¿½todos da interface de observavel
 	@Override
 	public void addObservador(IJogoObservador o)
 	{

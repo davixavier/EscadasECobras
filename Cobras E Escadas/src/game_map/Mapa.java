@@ -6,7 +6,7 @@ import java.util.List;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresPosicao;
 
-public class Mapa implements IMapaColeção
+public class Mapa implements IMapaColeÃ§Ã£o
 {
 	private List <CasaAbstrata> casas;
 	private JogadoresPosicao jogadoresPosicao;
@@ -15,18 +15,6 @@ public class Mapa implements IMapaColeção
 	{
 		this.casas = new ArrayList<CasaAbstrata>();
 		this.jogadoresPosicao = new JogadoresPosicao();
-
-		for (int i = 1; i < 101; i++) {
-			if(i == 10){
-				casas.add(new CasaEscada(i, i+50));
-			}else if(i == 66){
-				casas.add(new CasaCobra(i, i-65));
-			}else if(i == 30){
-				casas.add(new CasaBonus(i));
-			}else{
-				casas.add(new Casa(i));
-			}
-        }
 	}
 
 	public void addCasa(CasaAbstrata novaCasa)
@@ -59,20 +47,26 @@ public class Mapa implements IMapaColeção
 		CasaAbstrata casaAtual = getJogadoresPosicao().getCasaAtual(jogador);
 		int indiceCasaAtual = getCasaIndice(casaAtual);
 		
-		indiceCasaAtual += offset;
-		if (indiceCasaAtual < 0)
+		int proximaCasaIndex = indiceCasaAtual + offset;
+		if (proximaCasaIndex <= 0)
 		{
-			indiceCasaAtual = 0;
+			proximaCasaIndex = 0;
 		}
-		else if(indiceCasaAtual > 100)
+		else if(proximaCasaIndex >= 99)
 		{
-			indiceCasaAtual = 100;
-		}
+			proximaCasaIndex = 99;
+		} 
 		
-		CasaAbstrata proximaCasa = getCasa(indiceCasaAtual);
+		CasaAbstrata proximaCasa = getCasa(proximaCasaIndex);
+		if(proximaCasa instanceof CasaEspecialAbstrata)
+		{
+			CasaEspecialAbstrata proximaCasaEspecial = (CasaEspecialAbstrata)(proximaCasa);
+			proximaCasa = getCasa(proximaCasaEspecial.getDestino());
+			proximaCasaIndex = getCasaIndice(proximaCasa);
+		}
 		getJogadoresPosicao().setCasaAtual(jogador, proximaCasa);
 		
-		return indiceCasaAtual;
+		return proximaCasaIndex;
 	}
 	
 	public int casasSize()

@@ -7,7 +7,8 @@ public class ControladorJogo
 	
 	public ControladorJogo()
 	{
-		this.diretor = new DiretorJogo(new BuilderJogoConcreto());
+		this.diretor = new DiretorJogo();
+		this.diretor.setBuilder(new BuilderJogoConcreto());
 	}
 
 	public void comecar(int quantidadeJogadores)

@@ -5,5 +5,6 @@ public class Casa extends CasaAbstrata
     public Casa(int pos) 
     {
         super(pos);
+        cor = "#999999";
     }
 }

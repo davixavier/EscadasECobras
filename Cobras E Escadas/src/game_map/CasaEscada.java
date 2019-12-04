@@ -8,6 +8,7 @@ public class CasaEscada extends CasaEspecialAbstrata
 	{
 		super(pos);
 		this.ultimoDegrau = ultimo;
+		cor = "#805f18";
 	}
 
 	public int getDestino()

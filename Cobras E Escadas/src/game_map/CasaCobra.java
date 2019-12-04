@@ -8,6 +8,7 @@ public class CasaCobra extends CasaEspecialAbstrata
 	{
 		super(pos);
 		this.cauda = cau;
+		cor = "#16632d";
 	}
 
 	public int getDestino()

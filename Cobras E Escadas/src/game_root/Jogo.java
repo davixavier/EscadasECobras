@@ -32,6 +32,10 @@ public class Jogo implements IJogoObservavel
 		
 		turno = new ControladorTurno(jogadores.createIterator());
 		observadores = new ArrayList<IJogoObservador>();
+		
+		updateMapa();
+		updatePosicoes();
+		updateTurno();
 	}
 
 	public JogadoresCollection getJogadores() 
@@ -62,6 +66,7 @@ public class Jogo implements IJogoObservavel
 	public void addObservador(IJogoObservador o)
 	{
 		observadores.add(o);
+		updateMapa();
 	}
 	@Override
 	public void remObservador(IJogoObservador o)

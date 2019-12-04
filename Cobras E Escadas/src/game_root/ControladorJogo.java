@@ -10,14 +10,15 @@ public class ControladorJogo
 		this.diretor = new DiretorJogo(new BuilderJogoConcreto());
 	}
 
-	public void comecar(int quantidadeJogadores)
+	public void comecar(int quantidadeJogadores, JogoUI jogoUI)
 	{
 		this.jogo = diretor.construir(quantidadeJogadores);
+		this.jogo.addObservador((IJogoObservador)jogoUI);
 	}
 
-	public void iniciarJogoAcao()
+	public void iniciarJogoAcao(int quantidadeJogadores, JogoUI jogoUI)
 	{
-		
+		comecar(quantidadeJogadores, jogoUI);
 	}
 	
 	public boolean rodarDadosAcao()

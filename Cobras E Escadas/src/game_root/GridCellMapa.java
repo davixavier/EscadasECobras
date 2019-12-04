@@ -12,7 +12,7 @@ import javafx.scene.layout.Priority;
 public class GridCellMapa extends AnchorPane
 {
 	private int casaIndex;
-	HashMap<Integer, Label> jogadoresLabel;
+	private HashMap<Integer, Label> jogadoresLabel;
 	
 	public GridCellMapa(CasaAbstrata casa, int index) 
 	{

@@ -28,10 +28,6 @@ public class Jogo implements IJogoObservavel
 
 		this.mapa = new Mapa();
 		
-		for (int i = 0; i < quantidadeJogadores; i++) {
-			mapa.getJogadoresPosicao().setCasaAtual(jogadores.getJogador(i), mapa.getCasa(0));
-		}
-
 		movimentacao = new Movimentacao(new DadoD6()); //TODO passar mapa e dado
 		
 		turno = new ControladorTurno(jogadores.createIterator());
@@ -45,8 +41,7 @@ public class Jogo implements IJogoObservavel
 	protected void setMapa(Mapa map){
 		this.mapa = map;
 	}
-
-	public JogadoresCollection getJogadores() 
+	protected JogadoresCollection getJogadores() 
 	{
 		return jogadores;
 	}

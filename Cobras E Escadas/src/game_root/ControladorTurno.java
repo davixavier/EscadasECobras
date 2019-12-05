@@ -20,7 +20,7 @@ public class ControladorTurno
 	
 	public int turnoAtual()
 	{
-		int turno = iteradorJogadores.nextIndex();
+		int turno = iteradorJogadores.nextIndex()-1;
 		
 		return turno;
 	}

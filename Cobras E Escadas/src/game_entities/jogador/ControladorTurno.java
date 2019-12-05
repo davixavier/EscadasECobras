@@ -1,7 +1,4 @@
-package game_root;
-
-import game_entities.jogador.IteradorJogador;
-import game_entities.jogador.Jogador;
+package game_entities.jogador;
 
 public class ControladorTurno 
 {

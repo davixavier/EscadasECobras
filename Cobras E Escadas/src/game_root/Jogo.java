@@ -4,6 +4,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 
+import game_entities.jogador.ControladorTurno;
 import game_entities.jogador.IIteradorJogador;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresCollection;
@@ -35,7 +36,8 @@ public class Jogo implements IJogoObservavel
 		observadores = new ArrayList<IJogoObservador>();
 	}
 
-	protected void setMapa(Mapa map){
+	protected void setMapa(Mapa map)
+	{
 		this.mapa = map;
 	}
 	protected JogadoresCollection getJogadores() 

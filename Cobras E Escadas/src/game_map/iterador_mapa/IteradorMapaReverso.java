@@ -44,10 +44,4 @@ public class IteradorMapaReverso implements IIteradorMapa
 	{
 		return contador;
 	}
-	
-	@Override
-	public void reset() 
-	{
-		contador = casasCopia.size();
-	}
 }

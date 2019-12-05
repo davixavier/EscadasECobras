@@ -29,10 +29,4 @@ public class ControladorJogo
 	{
 		jogo.jogarTurno();
 	}
-	
-	public String finalizarJogo()
-	{
-		
-		return "";
-	}
 }

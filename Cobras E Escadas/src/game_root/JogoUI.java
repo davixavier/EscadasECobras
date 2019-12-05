@@ -290,6 +290,25 @@ public class JogoUI extends Application implements IJogoObservador
 		return ret;
 	}
 	
+	private String construirResultadoEspecial(MovimentoEvent movimentoEvent)
+	{
+		String ret = "Resultado: a casa especial fez você ";
+		
+		if (movimentoEvent.getMovimentoEspecial() < 0)
+		{
+			ret += "voltar ";
+		}
+		else 
+		{
+			ret += "avançar ";
+		}
+		
+		int casaFinal = (movimentoEvent.getCasaInicial()+movimentoEvent.getMovimentoDado()+movimentoEvent.getMovimentoEspecial())+1;
+		ret += "para a casa " + casaFinal;
+		
+		return ret;
+	}
+	
 	@Override
 	public void stop() throws Exception 
 	{
@@ -333,6 +352,8 @@ public class JogoUI extends Application implements IJogoObservador
 					avançarButton.setText("Rodar dado");
 					jogadorPosicoes.put(jogador, oldPosicao);
 					desenharCasas(lastCores, lastDestinos, jogadoresCores, jogadorPosicoes);
+					
+					resultadoLabel.setText(construirResultadoEspecial(movimentoEvent));
 					
 					//setar clique do botão para o original
 					avançarButton.setOnAction(actionEvent2 ->

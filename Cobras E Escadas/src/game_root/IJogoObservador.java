@@ -1,12 +1,11 @@
 package game_root;
 
 import java.util.HashMap;
-
-import game_map.iterador_mapa.*;
+import java.util.List;
 
 public interface IJogoObservador
 {
 	public void posicoesMudadas(MovimentoEvent movimentoEvent, 
 			HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> jogadorPosicoes);
-	public void mapaMudado(IIteradorMapa iIteradorMapa);
+	public void mapaMudado(List<String> coresCasas, List<Integer> destinoCasas);
 }

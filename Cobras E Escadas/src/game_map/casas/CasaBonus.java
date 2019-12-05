@@ -12,6 +12,6 @@ public class CasaBonus extends CasaEspecialAbstrata
 	@Override
 	public int getDestino() 
 	{
-		return (int) Math.random() * 3;
+		return posicao + (int) (Math.random() * 6 - 3);
 	}
 }

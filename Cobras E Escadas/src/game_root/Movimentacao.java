@@ -18,8 +18,10 @@ public class Movimentacao //Movimentacao possui um iterador do mapa e do jogador
 		int offset = sorteavel.sortear();
 		
 		MovimentoEvent event = new MovimentoEvent();
+		event.setCasaInicial(map.getCasaIndice(map.getJogadoresPosicao().getCasaAtual(jogador)));
 		event.setMovimentoDado(offset);
 		event.setMovimentoEspecial(map.moverJogador(jogador, offset));
+		event.setCasaFinal(event.getCasaFinal() + event.getMovimentoDado() + event.getMovimentoEspecial());
 		
 		return event;
 	}

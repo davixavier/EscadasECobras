@@ -2,12 +2,13 @@ package game_root;
 
 public class MovimentoEvent 
 {
+	private int casaInicial;
 	//movimento feito somente pelo dado
 	private int movimentoDado;
 	//movimento feito por casas especiais
 	private int movimentoEspecial;
 	//espaço final do movimento
-	private int casafinal;
+	private int casaFinal;
 	private int jogador;
 	
 	public int getMovimentoDado() 
@@ -26,17 +27,23 @@ public class MovimentoEvent
 	{
 		this.movimentoEspecial = movimentoEspecial;
 	}
-	public int getCasafinal() {
-		return casafinal;
+	public int getCasaFinal() {
+		return casaFinal;
 	}
-	public void setCasafinal(int casafinal) {
-		this.casafinal = casafinal;
+	public void setCasaFinal(int casafinal) {
+		this.casaFinal = casafinal;
 	}
 	public int getJogador() {
 		return jogador;
 	}
 	public void setJogador(int jogador) {
 		this.jogador = jogador;
+	}
+	public int getCasaInicial() {
+		return casaInicial;
+	}
+	public void setCasaInicial(int casaInicial) {
+		this.casaInicial = casaInicial;
 	}
 	
 	

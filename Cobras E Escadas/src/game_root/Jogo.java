@@ -8,6 +8,8 @@ import game_entities.jogador.IIteradorJogador;
 import game_entities.jogador.Jogador;
 import game_entities.jogador.JogadoresCollection;
 import game_logic.sorteaveis.DadoD6;
+import game_map.casas.CasaAbstrata;
+import game_map.casas.CasaEspecialAbstrata;
 import game_map.iterador_mapa.*;
 import game_root.Movimentacao;
 
@@ -65,9 +67,32 @@ public class Jogo implements IJogoObservavel
 	@Override
 	public void updateMapa() 
 	{
+		List<String> coresCasas = new ArrayList<>();
+		List<Integer> destinoCasas = new ArrayList<>();
+		
+		IIteradorMapa iteradorMapa = mapa.createIterator();
+		while (iteradorMapa.hasNext())
+		{
+			CasaAbstrata casa = iteradorMapa.next();
+			if (casa == null)
+				continue;
+			
+			coresCasas.add(casa.getCor());
+			
+			if (casa instanceof CasaEspecialAbstrata)
+			{
+				CasaEspecialAbstrata casaEspecial = (CasaEspecialAbstrata) casa;
+				destinoCasas.add(casaEspecial.getDestino());
+			}
+			else 
+			{
+				destinoCasas.add(0);
+			}
+		}
+		
 		observadores.forEach(observador ->
 		{
-			observador.mapaMudado(mapa.createIterator());
+			observador.mapaMudado(coresCasas, destinoCasas);
 		});
 	}
 

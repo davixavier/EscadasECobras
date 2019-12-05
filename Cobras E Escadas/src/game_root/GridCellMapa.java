@@ -2,7 +2,6 @@ package game_root;
 
 import java.util.HashMap;
 
-import game_map.casas.CasaAbstrata;
 import javafx.geometry.Pos;
 import javafx.scene.control.Label;
 import javafx.scene.layout.AnchorPane;
@@ -14,14 +13,15 @@ public class GridCellMapa extends AnchorPane
 	private int casaIndex;
 	private HashMap<Integer, Label> jogadoresLabel;
 	
-	public GridCellMapa(CasaAbstrata casa, int index) 
+	public GridCellMapa(String cor, int index) 
 	{
 		jogadoresLabel = new HashMap<Integer, Label>();
 		casaIndex = index;
 		
+		//numero da casa
 		Label casaLabel = new Label("" + index);
 		casaLabel.setAlignment(Pos.CENTER);		
-		casaLabel.setStyle("-fx-background-color: " + casa.getCor() + ";");
+		casaLabel.setStyle("-fx-background-color: " + cor + ";");
 		AnchorPane.setTopAnchor(casaLabel, 0.0);
 		AnchorPane.setBottomAnchor(casaLabel, 0.0);
 		AnchorPane.setLeftAnchor(casaLabel, 0.0);
@@ -34,12 +34,14 @@ public class GridCellMapa extends AnchorPane
 		setMaxHeight(Double.POSITIVE_INFINITY);
 	}
 	
+	//renderizar os jogadores
 	public void addJogadores(HashMap<Integer, String> jogadoresCores, HashMap<Integer, Integer> posicaoJogador)
 	{
 		if (jogadoresCores != null && posicaoJogador != null)
 		{
 			posicaoJogador.forEach((jogador, posicao) ->
 			{
+				//só renderiza se o jogador estiver nessa celula
 				if (posicao+1 != casaIndex)
 					return;
 				
@@ -49,6 +51,7 @@ public class GridCellMapa extends AnchorPane
 				jogadorLabel.setStyle("-fx-background-color: " + cor + ";");
 				
 				getChildren().add(jogadorLabel);
+				//posicionamento para cada jogador
 				if (jogador == 1)
 				{
 					AnchorPane.setTopAnchor(jogadorLabel, 0.0);
